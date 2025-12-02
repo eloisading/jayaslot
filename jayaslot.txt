@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JayaSlot - Teknologi & Game Populer</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ---------- 全局 ---------- */
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: radial-gradient(circle at top, #0f1f3a, #000814);
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* ---------- header ---------- */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    align-items: center;
+    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    flex-wrap: wrap;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #77aaff;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.download-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #00f6ff, #ff00e0, #00f6ff);
+    border-radius: 8px;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s, box-shadow 0.3s;
+    animation: glowBtn 2.5s infinite alternate;
+    box-shadow: 0 0 10px #00f6ff, 0 0 20px #ff00e0;
+}
+.download-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #00f6ff, 0 0 40px #ff00e0, 0 0 60px #00f6ff;
+}
+.download-btn i { font-size: 20px; }
+
+@keyframes glowBtn {
+    0% { box-shadow: 0 0 10px #00f6ff, 0 0 20px #ff00e0; }
+    50% { box-shadow: 0 0 20px #00f6ff, 0 0 40px #ff00e0; }
+    100% { box-shadow: 0 0 10px #00f6ff, 0 0 20px #ff00e0; }
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+.social-icons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+    background: linear-gradient(45deg, #00f6ff, #ff00e0);
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 12px #00f6ff, 0 0 18px #ff00e0;
+    animation: float 3s ease-in-out infinite;
+}
+.social-icons a:hover {
+    transform: scale(1.3);
+    box-shadow: 0 0 25px #00f6ff, 0 0 35px #ff00e0, 0 0 45px #00f6ff;
+}
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+/* ---------- 区块通用 ---------- */
+section { 
+    padding: 80px 20px; 
+    text-align: center; 
+}
+.section-title {
+    font-size: 32px;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+    animation: titleGlow 3s infinite alternate;
+    background: linear-gradient(90deg, #00f6ff, #ff00e0, #00f6ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+@keyframes titleGlow {
+    0% { text-shadow: 0 0 10px rgba(0, 246, 255, 0.3); }
+    50% { text-shadow: 0 0 20px rgba(0, 246, 255, 0.6), 0 0 30px rgba(255, 0, 224, 0.4); }
+    100% { text-shadow: 0 0 10px rgba(0, 246, 255, 0.3); }
+}
+
+/* ---------- 区块1 3D轮播 ---------- */
+.carousel-3d {
+    width: 100%;
+    max-width: 500px;
+    height: 250px;
+    margin: auto;
+    position: relative;
+    perspective: 1000px;
+}
+.carousel-3d .carousel-inner {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+.carousel-3d .carousel-item {
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    margin: -100px 0 0 -150px;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(0, 150, 255, 0.7);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    backface-visibility: hidden;
+}
+
+/* ---------- 区块2 卡片 ---------- */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+.card {
+    position: relative;
+    padding: 30px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+    transition: 0.4s;
+    cursor: pointer;
+    z-index: 1;
+}
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: 0.5s;
+    z-index: -1;
+}
+.card:hover::before { left: 100%; }
+.card:hover { transform: translateY(-10px) scale(1.03); }
+.card-icon { font-size: 40px; margin-bottom: 15px; color: #00f6ff; transition: 0.3s; }
+.card:hover .card-icon { transform: scale(1.2); color: #ff00e0; }
+.card h3 { margin: 0; }
+
+/* ---------- 区块3 小框 ---------- */
+.future-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+.future-box {
+    position: relative;
+    padding: 30px 20px;
+    border-radius: 16px;
+    background: rgba(0, 50, 100, 0.4);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: 0.4s;
+}
+.future-box:hover { transform: translateY(-8px) scale(1.05); }
+.future-icon { font-size: 36px; margin-bottom: 15px; color: #ff00e0; transition: 0.3s; }
+.future-box:hover .future-icon { transform: rotate(15deg) scale(1.2); color: #00f6ff; }
+
+/* ---------- 区块4 Glassmorphism卡片 ---------- */
+.block4-card-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 0 10px;
+}
+.block4-card {
+    position: relative;
+    width: 280px;
+    height: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+.block4-card:hover { transform: translateY(-10px) scale(1.03); box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
+.block4-card-title {
+    position: absolute;
+    top: 15px;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbowText 3s linear infinite;
+    background-size: 200% 200%;
+    z-index: 10;
+}
+.block4-slider {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-top: 40px;
+}
+.block4-slider-inner {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.block4-slider-inner img {
+    width: 100%;
+    height: calc(100% - 40px);
+    object-fit: cover;
+}
+
+/* ---------- Rainbow Text ---------- */
+@keyframes rainbowText {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+/* ---------- 手机端 ---------- */
+@media(max-width:768px){
+    header { 
+        flex-direction: column; 
+        gap: 15px; 
+        padding: 15px 20px;
+    }
+    .header-right { 
+        flex-direction: column; 
+        gap: 15px; 
+        width: 100%;
+        justify-content: center;
+    }
+    .social-icons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .social-icons a {
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+    }
+    .carousel-3d {
+        height: 200px;
+        max-width: 90%;
+    }
+    .carousel-3d .carousel-item {
+        width: 250px;
+        height: 160px;
+        margin: -80px 0 0 -125px;
+    }
+    .card-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+    }
+    .card {
+        padding: 20px 15px;
+    }
+    .card-icon {
+        font-size: 32px;
+    }
+    .future-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+    }
+    .future-box {
+        padding: 20px 15px;
+    }
+    .future-icon {
+        font-size: 30px;
+    }
+    .block4-card-wrapper { 
+        flex-direction: column; 
+        align-items: center; 
+        gap: 20px; 
+        padding: 0 15px; 
+    }
+    .block4-card { 
+        width: 100%; 
+        max-width: 320px;
+        height: 280px; 
+    }
+    .block4-card-title { 
+        font-size: 16px; 
+    }
+    .section-title {
+        font-size: 26px;
+        margin-bottom: 30px;
+    }
+    section {
+        padding: 60px 15px;
+    }
+}
+
+/* 针对更小的屏幕 */
+@media(max-width:480px){
+    .carousel-3d {
+        height: 180px;
+    }
+    .carousel-3d .carousel-item {
+        width: 220px;
+        height: 140px;
+        margin: -70px 0 0 -110px;
+    }
+    .card-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .future-grid {
+        grid-template-columns: 1fr;
+    }
+    .section-title {
+        font-size: 22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">
+    <img src="https://i.postimg.cc/65ggjZCG/long-logo.png" alt="JayaSlot" style="height:50px;">
+</div>
+
+<div class="header-right">
+    <a class="download-btn" href="https://i.postimg.cc/65ggjZCG/long-logo.png" target="_blank">
+        <i class="fab fa-android"></i>
+        UNDUH
+    </a>
+
+    <div class="social-icons">
+        <a href="https://t.me/+wxgqHnilNtRhNTM1" target="_blank"><i class="fab fa-telegram"></i></a>
+        <a href="https://whatsapp.com/channel/0029VbBNm0lA89Mae153Wu35" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/jayaresmigame" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Jayaplaygames" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://chatlink.chatslink.net/widget/standalone.html?eid=c9cba180fc2bd053db899a0f068310b9&language=indonesian" target="_blank"><i class="fas fa-headset"></i></a>
+    </div>
+</div>
+</header>
+
+<!-- 区块1 3D轮播 -->
+<section>
+    <h2 class="section-title">Selamat Datang di JAYASLOT</h2>
+    <div class="carousel-3d">
+        <div class="carousel-inner">
+            <div class="carousel-item" style="background-image:url('https://github.com/eloisading/jayaslot/blob/main/HD-VIP.jpg');"></div>
+            <div class="carousel-item" style="background-image:url('https://github.com/eloisading/jayaslot/blob/main/HD-bank.jpg');"></div>
+            <div class="carousel-item" style="background-image:url('https://github.com/eloisading/jayaslot/blob/main/HD-bonus.jpg');"></div>
+            <div class="carousel-item" style="background-image:url('https://github.com/eloisading/jayaslot/blob/main/HD-ewallet.jpg');"></div>
+            <div class="carousel-item" style="background-image:url('https://github.com/eloisading/jayaslot/blob/main/HD-hadiah.jpg');"></div>
+            <div class="carousel-item" style="background-image:url('https://github.com/eloisading/jayaslot/blob/main/HD-jack.jpg');"></div>
+        </div>
+    </div>
+</section>
+
+<!-- 区块2 卡片 -->
+<section>
+    <h2 class="section-title">Keuntungan Bergabung di JAYASLOT</h2>
+    <div class="card-grid">
+        <div class="card"><div class="card-icon"><i class="fas fa-gift"></i></div><h3>Hadiah pendatang baru hingga Rp 8888</h3></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-money-bill-wave"></i></div><h3>Bonus deposit pertama hingga 40%</h3></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-calendar-week"></i></div><h3>Bonus Mingguan & Bulanan</h3></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-crown"></i></div><h3>Hadiah peningkatan VIP</h3></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-wallet"></i></div><h3>FreeCash</h3></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-calendar-day"></i></div><h3>Hadiah Aktif Harian</h3></div>
+        <div class="card"><div class="card-icon"><i class="fas fa-ticket-alt"></i></div><h3>Kode Promosi</h3></div>
+    </div>
+</section>
+
+<!-- 区块3 小框 -->
+<section>
+    <h2 class="section-title">Keunggulan Platform Jayaslot</h2>
+    <div class="future-grid">
+        <div class="future-box"><div class="future-icon"><i class="fas fa-bolt"></i></div><div>Transaksi Cepat & Aman</div></div>
+        <div class="future-box"><div class="future-icon"><i class="fas fa-shield-alt"></i></div><div>Stabilitas Sistem & Privasi Terjamin</div></div>
+        <div class="future-box"><div class="future-icon"><i class="fas fa-headset"></i></div><div>Dukungan 24/7</div></div>
+        <div class="future-box"><div class="future-icon"><i class="fas fa-cogs"></i></div><div>Tim teknis secara berkala mengoptimalkan sistem.</div></div>
+    </div>
+</section>
+
+<!-- 区块4 Glassmorphism卡片 + 垂直滚动轮播 -->
+<section>
+    <h2 class="section-title">Game Populer JayaSlot</h2>
+    <div class="block4-card-wrapper">
+
+        <div class="block4-card">
+            <div class="block4-card-title">🎰 Mesin Slot Elektronik 🎰</div>
+            <div class="block4-slider">
+                <div class="block4-slider-inner" id="slider1">
+                    <img src="https://github.com/eloisading/jayaslot/blob/main/mah%20win%203.png">
+                    <img src="https://github.com/eloisading/jayaslot/blob/main/star.png">
+                    <img src="https://github.com/eloisading/jayaslot/blob/main/gems%204.jpg">
+                    <img src="https://github.com/eloisading/jayaslot/blob/main/super.png">
+                    <img src="https://github.com/eloisading/jayaslot/blob/main/mahjong%202.png">
+                </div>
+            </div>
+        </div>
+
+        <div class="block4-card">
+            <div class="block4-card-title">🐬 Permainan Memancing 🐡</div>
+            <div class="block4-slider">
+                <div class="block4-slider-inner" id="slider2">
+                    <img src="https://github.com/eloisading/jayaslot/blob/main/ocean%20lord.jpg">
+                    <img src="https://github.com/eloisading/jayaslot/blob/main/mega.png">
+                    <img src="https://github.com/eloisading/jayaslot/blob/main/war.png">
+                    <img src="https://github.com/eloisading/jayaslot/blob/main/ocean.png">
+                    <img src="https://github.com/eloisading/jayaslot/blob/main/jackpot.png">
+                </div>
+            </div>
+        </div>
+
+        <div class="block4-card">
+            <div class="block4-card-title">🚀 Permainan Terbang 🚀</div>
+            <div class="block4-slider">
+                <div class="block4-slider-inner" id="slider3">
+                    <img src="https://github.com/eloisading/jayaslot/blob/main/avia.png">
+                    <img src="https://github.com/eloisading/jayaslot/blob/main/aviatrix.png">
+                    <img src="https://github.com/eloisading/jayaslot/blob/main/capp.png">
+                    <img src="https://github.com/eloisading/jayaslot/blob/main/chicken.png">
+                    <img src="https://github.com/eloisading/jayaslot/blob/main/jetx.png">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer style="text-align:center; padding:20px; background: rgba(0,0,0,0.3); color:#aaa; font-size:14px;">
+    &copy; Hak Cipta © 2025 JAYASLOT™. Seluruh Hak Cipta Dilindungi Undang-Undang.
+</footer>
+
+<script>
+/* 区块1 3D轮播 */
+const carouselInner = document.querySelector('.carousel-inner');
+const items = document.querySelectorAll('.carousel-item');
+const itemCount = items.length;
+let angle = 360 / itemCount;
+let currIndex = 0;
+items.forEach((item, i) => {
+    let rotateY = i * angle;
+    item.style.transform = `rotateY(${rotateY}deg) translateZ(260px)`;
+});
+setInterval(() => {
+    currIndex++;
+    let rotate = currIndex * -angle;
+    carouselInner.style.transform = `rotateY(${rotate}deg)`;
+}, 3000);
+
+/* 区块4 垂直平滑滚动 */
+function setupSmoothVerticalSlider(sliderId, speed = 0.5) {
+    const slider = document.getElementById(sliderId);
+    const parent = slider.parentElement;
+    const imgs = Array.from(slider.querySelectorAll('img'));
+    let loadedCount = 0;
+    imgs.forEach(img => { img.onload = img.onerror = () => { loadedCount++; if(loadedCount===imgs.length)initSlider(); }; });
+
+    function initSlider() {
+        const totalImgs = imgs.length;
+        const imgHeight = imgs[0].offsetHeight;
+        imgs.forEach(img => slider.appendChild(img.cloneNode(true)));
+        let scrollTop = 0, isPaused = false;
+        parent.addEventListener('mouseenter',()=>isPaused=true);
+        parent.addEventListener('mouseleave',()=>isPaused=false);
+        function animate() {
+            if(!isPaused){ scrollTop += speed; if(scrollTop >= imgHeight * totalImgs) scrollTop=0; slider.style.transform=`translateY(-${scrollTop}px)`; }
+            requestAnimationFrame(animate);
+        }
+        requestAnimationFrame(animate);
+        window.addEventListener('resize',()=>{ slider.style.transition='none'; scrollTop=0; });
+    }
+}
+setupSmoothVerticalSlider('slider1',0.5);
+setupSmoothVerticalSlider('slider2',0.5);
+setupSmoothVerticalSlider('slider3',0.5);
+</script>
+
+</body>
+</html>
